@@ -11,8 +11,11 @@ data class PurchaseOrder(
 
     @Id val id:UUID = UUID.randomUUID(),
 
-    var cliente: String = "",
+    @OneToMany(mappedBy = "purchaseOrder", cascade = arrayOf(CascadeType.ALL),orphanRemoval = true)
+    var items: MutableList<ItemOrder> = mutableListOf(),
 
-    @OneToMany(mappedBy = "purchaseOrder", cascade = arrayOf(CascadeType.ALL))
-    val items: List<ItemOrder> = mutableListOf()
+    var totalAmount:Float = 0.0F,
+
+    val client: String = ""
+
 )

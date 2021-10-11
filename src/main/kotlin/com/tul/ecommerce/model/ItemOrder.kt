@@ -1,8 +1,10 @@
 package com.tul.ecommerce.model
 
-import java.math.BigDecimal
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.tul.ecommerce.dto.ItemOrderStatus
 import java.util.*
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.Id
 import javax.persistence.ManyToOne
 
@@ -13,12 +15,13 @@ class ItemOrder (
     val id: UUID = UUID.randomUUID(),
 
     @ManyToOne
-    val producto: Producto = Producto(),
+    var product: Product = Product(),
 
-    val cantidad: Int = 0,
+    var cantidad: Int = 0,
 
-    val precio: BigDecimal = BigDecimal(0),
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
+    var purchaseOrder: PurchaseOrder = PurchaseOrder(),
 
-    @ManyToOne
-    val purchaseOrder: PurchaseOrder = PurchaseOrder()
+    var statusOrder : ItemOrderStatus = ItemOrderStatus.PENDING
 )

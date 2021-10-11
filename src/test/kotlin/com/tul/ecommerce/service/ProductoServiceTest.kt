@@ -1,10 +1,8 @@
 package com.tul.ecommerce.service
 
 import com.tul.ecommerce.repository.ProductoRepository
-import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 internal class ProductoServiceTest {
@@ -17,7 +15,7 @@ internal class ProductoServiceTest {
         //given
 
         //when
-        productoService.getAllProductos()
+        productoService.getAllProducts()
 
         //then
         verify(exactly = 1){productoRepository.findAll()}
